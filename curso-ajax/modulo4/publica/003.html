@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script type="text/javascript">
+       
+        function getFacturas() {
+            return axios.get("facturas");  
+        }
+        function insertarFactura(factura) {
+         return axios.post("/facturas", factura);
+        }
+        function mostrarTabla(facturas) {
+            $("#zona").empty(); 
+            facturas.forEach(factura => {
+                $("#zona").append(crearFila(factura)); 
+            }); 
+        }
+
+        function crearFila(factura) {
+            return `<p>${factura.id},${factura.concepto},${factura.importe}<input type="button" class="borrar" data-id="${factura.id}" value="borrar"></p>`;
+        }
+
+        function crearFacturas() {
+            let facturaNueva = {};
+            facturaNueva.id = $("#id").val();
+            facturaNueva.concepto = $("#concepto").val();
+            facturaNueva.importe = $("#importe").val();
+            return facturaNueva;
+        }
+    </script>    
+    <script type="text/javascript">    
+       $(document).ready(function(){
+
+            $("body").on("click", ".borrar", function(){
+               let id = $(this).attr("data-id");
+               axios.delete(`/facturas/${id}`).then(function(){                      
+                    return getFacturas();
+                }).then(function(facturas){                 
+                    mostrarTabla(facturas.data);
+                });    
+            })
+
+            $("#botonAjax").click(function(){                                   
+              getFacturas().then(function(facturas){ 
+                    console.log(facturas.data);
+                    mostrarTabla(facturas.data);             
+                }).catch(function (error) {
+                    alert(error);
+                })
+            });          
+            $("#insertar").click(function(){
+               
+                insertarFactura(crearFacturas()).then(function(){                      
+                    return getFacturas();
+                }).then(function(facturas){                 
+                    mostrarTabla(facturas.data);
+                });  
+            });
+        });       
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        
+        <input type="button" value="ajax" id="botonAjax">
+        <div id="formulario">
+            <p>
+                id : <input type="text" id="id" name="id">
+            </p>
+            <p>
+               concepto :  <input type="text" id="concepto" name="concepto">
+            </p>
+            <p>
+                importe :  <input type="text" id="importe" name="importe">
+             </p>
+             <input type="button" value="insertar" id="insertar">
+        </div>
+    </div>
+</body>
+</html>

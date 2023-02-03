@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">    
+       $(document).ready(function(){
+            $("#botonAjax").click(function(){
+                $.get("facturas", function(facturas){
+                  
+                    facturas.forEach(factura => {
+                        //ES6 templates, plantillas de JavaScript  
+                        $("#zona").append(`<p>${factura.id},${factura.concepto},${factura.importe}</p>`); 
+                    });    
+                });
+            })
+       });
+        
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        <p>Hola desde ajax </p>
+        <input type="button" value="ajax" id="botonAjax">
+    </div>
+</body>
+</html>

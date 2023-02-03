@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curso jquery</title>
+
+    <script type="text/javascript">
+
+        window.onload = function() {
+            var botones = document.getElementsByTagName("input");
+            for (boton of botones) {
+                boton.onclick = pulsar;
+            }
+        }
+
+        function pulsar() {
+            let body = document.getElementsByTagName("body")[0];
+            let parrafo = document.createElement("p");
+            let texto = document.createTextNode("has pulsado");
+            parrafo.appendChild(texto);
+            body.append(parrafo);
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" value="pulsar">
+    <input type="button" value="pulsar">
+    <input type="button" value="pulsar">
+</body>
+</html>

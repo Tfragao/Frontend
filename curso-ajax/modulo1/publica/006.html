@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">    
+       $(document).ready(function(){
+            $("#botonAjax").click(function(){
+                $.get("ajaxjson", function(datos){
+                  
+                    console.log(datos);
+                    //Mucho mas sencillo con Json
+                   $("#zona").html(datos.mensaje); //una estructura json se puede convertir automaticamente en un eleemnto JavaScript
+                })
+            })
+       });
+        
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        <p>Hola desde 001</p>
+        <input type="button" value="ajax" id="botonAjax">
+    </div>
+</body>
+</html>

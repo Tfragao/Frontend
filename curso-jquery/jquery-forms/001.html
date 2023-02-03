@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        input[type="text"] {
+            font-size: 14px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
+            outline: none;
+        }
+
+        label{
+            color: #999;
+            font-size: 14px;
+        }
+
+        .iluminar:focus {
+            outline: 1px solid rgb(140, 148, 223);
+            border-radius: 2px;
+        }
+
+        .destacar {
+            color: rgb(140, 148, 223);
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $(":text").focus(function(){
+                $(this).addClass("iluminar").prev().addClass("destacar");
+            }).blur(function(){
+                $(this).removeClass("iluminar").prev().removeClass("destacar");
+            })
+
+            $("#nombre").keyup(function(){
+               
+                let texto = $(this).val();
+                let regex = new RegExp("([a-z]){3}")
+                let $siguinte = $(this).next()
+
+                if (regex.test(texto)) {
+
+                    //elimino el mensaje de error
+                    $siguinte.remove();
+
+                } else {
+                    //comprobar que la caja de input no tiene todavia un span
+                    if ($siguinte.length == 0) {
+                        $(this).parent().append("<span> el nombre tiene que tener 3 caracteres</span>");
+                    }                 
+                }
+            })
+
+            $("#apellidos").keyup(function(){
+               
+               let texto = $(this).val();
+               let regex = new RegExp("([a-z]){5}")
+               let $siguinte = $(this).next()
+
+               if (regex.test(texto)) {
+
+                   //elimino el mensaje de error
+                   $siguinte.remove();
+
+               } else {
+                   //comprobar que la caja de input no tiene todavia un span
+                   if ($siguinte.length == 0) {
+                       $(this).parent().append("<span> el apellido tiene que tener 5 caracteres</span>");
+                   }                 
+               }
+           })
+
+        });
+    </script>    
+</head>
+<body>
+    <form action="destino">
+        <p>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" placeholder="introduce el nombre">
+        </p>
+
+        <p>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" name="apellidos" id="apellidos" placeholder="introduce los apellidos">
+        </p>
+        <input type="button" value="aceptar">
+    </form>
+</body>
+</html>

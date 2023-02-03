@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script type="text/javascript">
+       
+       //se ejecuta cuando la peticion ya ha sido realizada
+       function ajax() {
+
+            console.log("inicia ajax");
+            //peticion clasica
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+               
+                //se ejecuta cada vez que la peticion ha sido modificada su estado
+                //readyState hace referencia al estado de la peticion, 4 es un estado de finalizada
+                //el status hace referencia a si la peticion termino correctamente 200 = ok
+                if (this.readyState == 4 && this.status == 200) {
+                    //variable que almacena el resultado
+                    //console.log(this.responseText);
+
+                    document.getElementById("zona").innerHTML = this.responseText;
+                }
+
+            }
+            //La definicion de la url
+            xhttp.open("GET", "ajax1", true); //peticion tipo GET a la url ajax1 y sera asyncrona
+            //comando que envia la peticion
+            xhttp.send();
+        }
+        
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        <p>Hola desde 001</p>
+        <input type="button" value="ajax" onclick="ajax()">
+    </div>
+</body>
+</html>

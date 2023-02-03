@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script type="text/javascript">
+       
+       
+       function ajax() {
+
+            console.log("inicia ajax");
+            
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = ajaxResultado;
+                
+            xhttp.open("GET", "ajax1", true); 
+            xhttp.send();
+        }
+
+        function ajaxResultado() {
+
+            // Estados de la peticion Ajax:
+            //0 : no inicializado
+            //1: conexion con el servidor establecida
+            //2: peticion recibida
+            //3: procesando la peticion
+            //4: respuesta disponible
+            /* Son 5 estados y cuatro cambios : 0->1, 1->2, 2->3, 3->4 */
+
+            if (this.readyState == 4 && this.status == 200) {
+                   
+                    document.getElementById("zona").innerHTML = this.responseText;
+                }
+
+        }
+        
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        <p>Hola desde 001</p>
+        <input type="button" value="ajax" onclick="ajax()">
+    </div>
+</body>
+</html>

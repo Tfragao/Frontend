@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">    
+       $(document).ready(function(){
+            $("#botonAjax").click(function(){
+                
+                //La peticion ajax la he convertido en una variable (promesa1)
+                let promesa1 = $.get("factura");             
+                
+              promesa1.then(function(facturas){   
+                    facturas.forEach(factura => {
+                        
+                        $("#zona").append(`<p>${factura.id},${factura.concepto},${factura.importe}</p>`); 
+                    });    
+                }).fail(function(error){
+                    alert(error.statusText);
+              });
+
+            });
+       });
+        
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        <input type="button" value="ajax" id="botonAjax">
+    </div>
+</body>
+</html>

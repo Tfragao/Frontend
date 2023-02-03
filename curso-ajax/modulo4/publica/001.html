@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script type="text/javascript">
+       
+        function getFacturas() {
+            return axios.get("facturas2");  
+        }
+        function insertarFactura(factura) {
+         return $.ajax({
+                url:"facturas",
+                type:"post",
+                dataType:"json",
+                contentType:"application/json",
+                data:JSON.stringify(factura)
+                })
+        }
+        function mostrarTabla(facturas) {
+            $("#zona").empty(); 
+            facturas.forEach(factura => {
+                $("#zona").append(`<p>${factura.id},${factura.concepto},${factura.importe}</p>`); 
+            }); 
+        }
+        function crearFacturas() {
+            let facturaNueva = {};
+            facturaNueva.id = $("#id").val();
+            facturaNueva.concepto = $("#concepto").val();
+            facturaNueva.importe = $("#importe").val();
+            return facturaNueva;
+        }
+    </script>    
+    <script type="text/javascript">    
+       $(document).ready(function(){
+            $("#botonAjax").click(function(){                                   
+              getFacturas().then(function(facturas){ 
+                    console.log(facturas.data);
+                    mostrarTabla(facturas.data);             
+                }).catch(function (error) {
+                    // handle error
+                    alert(error);
+                })
+            });          
+            $("#insertar").click(function(){
+               
+                insertarFactura(crearFacturas()).then(function(){                      
+                    return getFacturas();
+                }).then(function(facturas){                 
+                    mostrarTabla(facturas);
+                });  
+            });
+        });       
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        
+        <input type="button" value="ajax" id="botonAjax">
+        <div id="formulario">
+            <p>
+                id : <input type="text" id="id" name="id">
+            </p>
+            <p>
+               concepto :  <input type="text" id="concepto" name="concepto">
+            </p>
+            <p>
+                importe :  <input type="text" id="importe" name="importe">
+             </p>
+             <input type="button" value="insertar" id="insertar">
+        </div>
+    </div>
+</body>
+</html>

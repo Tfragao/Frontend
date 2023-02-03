@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curso jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    // $ es una funcion y recibe el documento generando un objeto complejo
+
+    $(document).ready(function(){
+        console.log($(document));
+        $("input").click(pulsar);
+    });
+
+    function pulsar() {
+           $("body").append("<p>has pulsado</p>"); 
+    }
+
+    </script>
+</head>
+<body>
+    <input type="button" value="pulsar">
+    <input type="button" value="pulsar">
+    <input type="button" value="pulsar">
+</body>
+</html>

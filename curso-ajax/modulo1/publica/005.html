@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejemplo de ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">    
+       $(document).ready(function(){
+            $("#botonAjax").click(function(){
+                $.get("ajaxxml", function(datos){
+                    console.log(datos);
+
+                    //Podemos ver que nos es tan sencillo trabajar con XML, tenemos que parsear los datos recebidos desde el servidor
+                    parser = new DOMParser();
+                    xml = parser.parseFromString(datos, "text/xml");
+                    var texto = xml.getElementsByTagName('mensaje')[0].firstChild.nodeValue;
+                    console.log(texto);
+                    $("#zona").html(texto);
+                })
+            })
+       });
+        
+    </script>
+</head>
+<body>
+    
+    <div id="zona">
+        <p>Hola desde 001</p>
+        <input type="button" value="ajax" id="botonAjax">
+    </div>
+</body>
+</html>

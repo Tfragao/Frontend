@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>curso jquery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
+     <style>
+         .azul{
+            color: blue;
+         }
+
+         .mas{
+            font-size: 20px;
+         }
+
+         .verdana{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+         }
+     </style>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        
+        
+        $("input").click(function(e){
+            //cuando invoco a remove me elimina el estilo y me devuelve el objeto en el nuevo estado
+            $("p").removeClass().addClass(e.target.id);
+        })
+      
+    });
+
+    </script>
+</head>
+<body>
+    <input type="button" value="mas" id="mas">
+    <input type="button" value="azul" id="azul">
+    <input type="button" value="verdana" id="verdana">
+    <p>jquery</p>
+    <p>jquery</p>
+</body>
+</html>

@@ -46,4 +46,8 @@ export class RoomsService {
   getRooms() {
     return this.roomList;
   }
+
+  addRoom(room : RoomList) {
+    this.roomList.push(room);
+  }
 }

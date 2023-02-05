@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'hinv-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit{
   
   password : string = '';
 
-  constructor() {
+  constructor(private route : Router) {
 
   }
   
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit{
 
   Login() {
     if (this.email === "admin@gmail.com" && this.password === "Admin") {
-      alert("Login Successful");
+      //this.route.navigate(['/rooms', 'add']);
+      this.route.navigateByUrl('/rooms/add');
     }
   }
 

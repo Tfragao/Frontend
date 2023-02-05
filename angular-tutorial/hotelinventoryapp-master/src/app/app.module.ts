@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { HoverDirective } from './hover.directive';
 import { EmailvalidatorDirective } from './emailValidator/emailvalidator.directive';
-import { RoomsModule } from './rooms/rooms.module';
+//import { RoomsModule } from './rooms/rooms.module';
 
 
 
@@ -35,7 +35,7 @@ import { RoomsModule } from './rooms/rooms.module';
   ],
   imports: [
     BrowserModule,
-    RoomsModule,       //Register your feature before appRoutingModule
+   // RoomsModule,       //Register your feature before appRoutingModule
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,

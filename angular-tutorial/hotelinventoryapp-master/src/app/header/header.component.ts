@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../config.service';
 
 @Component({
   selector: 'hinv-header',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit{
   
   title : string = '';
-  constructor() {
+  constructor(private configService : ConfigService) {
 
   }
 

@@ -1,4 +1,5 @@
 import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ConfigService } from '../config.service';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './rooms';
 import { RoomsService } from './services/rooms.service';
@@ -30,7 +31,7 @@ export class RoomsComponent implements OnInit, AfterViewInit{
   @ViewChildren(HeaderComponent) headerChildrenComponent! : QueryList<HeaderComponent>;
 
 
-  constructor(private roomsService : RoomsService) {
+  constructor(private roomsService : RoomsService, private configService : ConfigService) {
     this.roomList = this.roomsService.getRooms();
   }
   

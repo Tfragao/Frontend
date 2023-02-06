@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'hinv-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit{
   
   password : string = '';
 
-  constructor(private route : Router) {
+  constructor(private route : Router, private loginService : LoginService) {
 
   }
   
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit{
   }
 
   Login() {
-    if (this.email === "admin@gmail.com" && this.password === "Admin") {
+    if (this.loginService.Login(this.email, this.password)) {
       //this.route.navigate(['/rooms', 'add']);
-      this.route.navigateByUrl('/rooms/add');
+      //this.route.navigateByUrl('/rooms/add');
+      this.route.navigate(['/rooms']);
     }
   }
 
